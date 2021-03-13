@@ -15,12 +15,13 @@ def einlesen():
     return liste
 
 done = False
+start = datetime.now()
 
 def ausprobieren_md5(line):
-    print(line)
+    #print(line)
     global done
 
-    start=datetime.now()
+    global start
 
     temp_versch_0 = hshl.md5(line.encode()).hexdigest()
     if temp_versch_0 == verschluesselt:
