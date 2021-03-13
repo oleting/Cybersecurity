@@ -15,6 +15,7 @@ start=datetime.now()
 
 with open(path_to_dictionary, "r") as file:
     for line in file:
+        #print(line)
         temp_versch = hshl.md5(line.strip().encode()).hexdigest()
         if temp_versch == verschluesselt:
             print(verschluesselt + " = " + line.strip())
