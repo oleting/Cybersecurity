@@ -1,6 +1,7 @@
 import hashlib as hshl
 from multiprocessing import Pool as ThreadPool
 from datetime import datetime
+threads = 12
 
 verschluesselt = "f3d32b5c842129e19779389eab03960a" #md5 von yr01()
 path_to_dictionary = "Passwoerter/dict.txt"
@@ -116,12 +117,12 @@ def check_time(liste):
                         done = True
                         return datetime.now()-start
     delta = datetime.now()-start
-    print(f"expected time for all items = {delta.total_seconds()* len(liste) / 12}s")
+    print(f"expected time for all items = {delta.total_seconds()* len(liste) / (threads/2)}s")
 if __name__ == "__main__":
     words = einlesen()
     print("Einlesen fertig")
     check_time(words)
-    pool = ThreadPool(12)
+    pool = ThreadPool(threads)
     start = datetime.now()
     pool.map(ausprobieren_md5, words)
     pool.close()
