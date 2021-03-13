@@ -7,6 +7,10 @@ path_to_dictionary = "Passwoerter/dict.txt"
 
 additional_chars = "0123456789!§$%&/()=?*"
 
+done = False
+start = datetime.now()
+
+
 def einlesen():
     liste = []
     with open(path_to_dictionary, "r") as file:
@@ -14,8 +18,6 @@ def einlesen():
             liste.append(raw_line.strip())          
     return liste
 
-done = False
-start = datetime.now()
 
 def ausprobieren_md5(line):
     #print(line)
@@ -120,7 +122,7 @@ if __name__ == "__main__":
     print("Einlesen fertig")
     check_time(words)
     pool = ThreadPool(12)
-    print(datetime.now())
+    start = datetime.now()
     pool.map(ausprobieren_md5, words)
     pool.close()
     pool.join()
