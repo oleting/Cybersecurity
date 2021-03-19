@@ -4,6 +4,7 @@ from datetime import datetime
 threads = 12
 
 verschluesselt = "f3d32b5c842129e19779389eab03960a" #md5 von yr01()
+verschluesselt = hshl.md5("zoom_in6=".encode()).hexdigest()
 path_to_dictionary = "Passwoerter/dict.txt"
 
 additional_chars = "0123456789!§$%&/()=?*"
@@ -26,21 +27,19 @@ def ausprobieren_md5(line):
 
     global start
 
-    temp_versch_0 = hshl.md5(line.encode()).hexdigest()
-    if temp_versch_0 == verschluesselt:
-        print(f"{ datetime.now()-start } | {verschluesselt} = {line}")
-        done = True
-        return None
+    # temp_versch_0 = hshl.md5(line.encode()).hexdigest()
+    # if temp_versch_0 == verschluesselt:
+    #     print(f"{ datetime.now()-start } | {verschluesselt} = {line}")
+    #     done = True
+    #     return None
 
-    i = 0
-    while i < len(additional_chars) and not done:
-        char = additional_chars[i]
+    for char in additional_chars:
         temp_word = line + char
-        temp_versch_1 = hshl.md5(temp_word.encode()).hexdigest()
-        if temp_versch_1 == verschluesselt:
-            print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word}")
-            done = True
-            return None
+        # temp_versch_1 = hshl.md5(temp_word.encode()).hexdigest()
+        # if temp_versch_1 == verschluesselt:
+        #     print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word}")
+
+        #     return None
         
         for char_2 in additional_chars:
 
@@ -48,28 +47,27 @@ def ausprobieren_md5(line):
             temp_versch_2 = hshl.md5(temp_word_2.encode()).hexdigest()
             if temp_versch_2 == verschluesselt:
                 print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word_2}")
-                done = True
+
                 return None
             
 
-            for char_3 in additional_chars:
+            # for char_3 in additional_chars:
 
-                temp_word_3 = temp_word_2 + char_3
-                temp_versch_3 = hshl.md5(temp_word_3.encode()).hexdigest()
-                if temp_versch_3 == verschluesselt:
-                    print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word_3}")
-                    done = True
-                    return None
+            #     temp_word_3 = temp_word_2 + char_3
+            #     temp_versch_3 = hshl.md5(temp_word_3.encode()).hexdigest()
+            #     if temp_versch_3 == verschluesselt:
+            #         print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word_3}")
+
+            #         return None
                 
-                for char_4 in additional_chars:
-                    temp_word_4 = temp_word_3 + char_4
-                    temp_versch_4 = hshl.md5(temp_word_4.encode()).hexdigest()
-                    if temp_versch_4 == verschluesselt:
-                        print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word_4}")
-                        done = True
-                        return None
+            #     for char_4 in additional_chars:
+            #         temp_word_4 = temp_word_3 + char_4
+            #         temp_versch_4 = hshl.md5(temp_word_4.encode()).hexdigest()
+            #         if temp_versch_4 == verschluesselt:
+            #             print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word_4}")
 
-        i+=1
+            #             return None
+
 def check_time(liste):
     global start
     global done
@@ -118,10 +116,12 @@ def check_time(liste):
                         return datetime.now()-start
     delta = datetime.now()-start
     print(f"expected time for all items = {delta.total_seconds()* len(liste) / (threads/2)}s")
+
 if __name__ == "__main__":
     words = einlesen()
     print("Einlesen fertig")
     check_time(words)
+    
     pool = ThreadPool(threads)
     start = datetime.now()
     pool.map(ausprobieren_md5, words)
