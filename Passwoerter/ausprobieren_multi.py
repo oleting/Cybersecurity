@@ -1,7 +1,7 @@
 import hashlib as hshl
 from multiprocessing import Pool as ThreadPool
 from datetime import datetime
-prozesse = 12
+prozesse = 4
 
 verschluesselt = "f3d32b5c842129e19779389eab03960a" #md5 von yr01()
 verschluesselt = hshl.md5("zoom_in*=".encode()).hexdigest()
@@ -116,7 +116,7 @@ def check_time(liste):
             #             return datetime.now()-start
                     
     delta = datetime.now()-start
-    print(f"expected time for all items = {delta.total_seconds()* len(liste) / (prozesse/2)}s")
+    print(f"expected time for all items = {delta.total_seconds()* len(liste) / (prozesse)}s")
 
 if __name__ == "__main__":
     words = einlesen()
