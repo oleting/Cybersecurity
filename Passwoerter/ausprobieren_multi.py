@@ -73,20 +73,20 @@ def check_time(liste):
     global done
     line = liste[0]
     temp_versch_0 = hshl.md5(line.encode()).hexdigest()
-    if temp_versch_0 == verschluesselt:
-        print(f"{ datetime.now()-start } | {verschluesselt} = {line}")
-        done = True
-        return datetime.now()-start
+    # if temp_versch_0 == verschluesselt:
+    #     print(f"{ datetime.now()-start } | {verschluesselt} = {line}")
+    #     done = True
+    #     return datetime.now()-start
 
 
     for char in additional_chars:
 
         temp_word = line + char
-        temp_versch_1 = hshl.md5(temp_word.encode()).hexdigest()
-        if temp_versch_1 == verschluesselt:
-            print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word}")
-            done = True
-            return datetime.now()-start
+        # temp_versch_1 = hshl.md5(temp_word.encode()).hexdigest()
+        # if temp_versch_1 == verschluesselt:
+        #     print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word}")
+        #     done = True
+        #     return datetime.now()-start
         
         for char_2 in additional_chars:
 
@@ -98,22 +98,22 @@ def check_time(liste):
                 return datetime.now()-start
             
 
-            for char_3 in additional_chars:
+            # for char_3 in additional_chars:
 
-                temp_word_3 = temp_word_2 + char_3
-                temp_versch_3 = hshl.md5(temp_word_3.encode()).hexdigest()
-                if temp_versch_3 == verschluesselt:
-                    print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word_3}")
-                    done = True
-                    return datetime.now()-start
+            #     temp_word_3 = temp_word_2 + char_3
+            #     temp_versch_3 = hshl.md5(temp_word_3.encode()).hexdigest()
+            #     if temp_versch_3 == verschluesselt:
+            #         print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word_3}")
+            #         done = True
+            #         return datetime.now()-start
                 
-                for char_4 in additional_chars:
-                    temp_word_4 = temp_word_3 + char_4
-                    temp_versch_4 = hshl.md5(temp_word_4.encode()).hexdigest()
-                    if temp_versch_4 == verschluesselt:
-                        print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word_4}")
-                        done = True
-                        return datetime.now()-start
+            #     for char_4 in additional_chars:
+            #         temp_word_4 = temp_word_3 + char_4
+            #         temp_versch_4 = hshl.md5(temp_word_4.encode()).hexdigest()
+            #         if temp_versch_4 == verschluesselt:
+            #             print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word_4}")
+            #             done = True
+            #             return datetime.now()-start
                     
     delta = datetime.now()-start
     print(f"expected time for all items = {delta.total_seconds()* len(liste) / (prozesse/2)}s")
