@@ -116,7 +116,7 @@ def check_time(liste):
                         return datetime.now()-start
                     
     delta = datetime.now()-start
-    print(f"expected time for all items = {delta.total_seconds()* len(liste) / (threads/2)}s")
+    print(f"expected time for all items = {delta.total_seconds()* len(liste) / (prozesse/2)}s")
 
 if __name__ == "__main__":
     words = einlesen()
