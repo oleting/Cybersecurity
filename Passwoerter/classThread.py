@@ -18,17 +18,17 @@ def checkHash(value, verschluesselt, additional_chars, start):
         for char_2 in additional_chars:
 
             temp_word_2 = temp_word + char_2
-            # temp_versch_2 = hshl.md5(temp_word_2.encode()).hexdigest()
-            # if temp_versch_2 == verschluesselt:
-            #     #print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word_2}")
-            #     return True, datetime.now()-start, f"{verschluesselt} = {temp_word_2}"
+            temp_versch_2 = hshl.md5(temp_word_2.encode()).hexdigest()
+            if temp_versch_2 == verschluesselt:
+                #print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word_2}")
+                return True, datetime.now()-start, f"{verschluesselt} = {temp_word_2}"
 
-            for char_3 in additional_chars:
-                temp_word_3 = temp_word_2 + char_3
-                temp_versch_3 = hshl.md5(temp_word_3.encode()).hexdigest()
-                if temp_versch_3 == verschluesselt:
-                    #print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word_3}") 
-                    return True, datetime.now()-start, f"{verschluesselt} = {temp_word_3}"
+            # for char_3 in additional_chars:
+            #     temp_word_3 = temp_word_2 + char_3
+            #     temp_versch_3 = hshl.md5(temp_word_3.encode()).hexdigest()
+            #     if temp_versch_3 == verschluesselt:
+            #         #print(f"{ datetime.now()-start } | {verschluesselt} = {temp_word_3}") 
+            #         return True, datetime.now()-start, f"{verschluesselt} = {temp_word_3}"
                 
             #     for char_4 in additional_chars:
             #         temp_word_4 = temp_word_3 + char_4

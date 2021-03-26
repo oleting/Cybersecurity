@@ -4,7 +4,7 @@ from datetime import datetime
 threads = 12
 
 verschluesselt = "f3d32b5c842129e19779389eab03960a" #md5 von yr01()
-verschluesselt = hshl.md5("zoom_in6=".encode()).hexdigest()
+verschluesselt = hshl.md5("zoom_in*=".encode()).hexdigest()
 path_to_dictionary = "Passwoerter/dict.txt"
 
 additional_chars = "0123456789!§$%&/()=?*"
