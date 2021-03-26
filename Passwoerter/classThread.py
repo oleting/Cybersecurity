@@ -57,7 +57,7 @@ class PasswortThreader(threading.Thread):
         print(str(self.id) + " started.")
         for word in self.dictionary:
             fertig, zeit, ausgabe  = checkHash(word, self.verschluesselt, self.chars, self.startzeit)
-            #print(word)
+            # print(word)
             if fertig:
                 print(f"{self.id} found {ausgabe}  || {zeit}")
                 

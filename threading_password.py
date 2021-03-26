@@ -5,7 +5,7 @@ import threading
 from Passwoerter.classThread import PasswortThreader as Thread
 
 threads = 2
-word = "zoom_in6=2"
+word = "zoom_in*="
 
 verschluesselt = hshl.md5(word.encode()).hexdigest()
 #verschluesselt = "f3d32b5c842129e19779389eab03960a"
